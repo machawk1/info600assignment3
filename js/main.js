@@ -15,6 +15,8 @@ function performPost(){
     const hours = date.getHours().toString().padStart(2, '0')
     const minutes = date.getMinutes().toString().padStart(2, '0')
     const time = hours + ':' + minutes
+
+    var formData = {fullName: fullName, major: major, startYear: startYear};
     const newEntry = time + ' - ' + fullName + ', ' + major + ', ' + startYear
     const enteredRecords = document.getElementById('enteredRecords')
     let newChild = document.createElement('li')
@@ -25,7 +27,8 @@ function performPost(){
     
    $.ajax({
        type:"POST",
-       url: "user/"
+       url: "user/",
+       data: formData
        
   })
   
