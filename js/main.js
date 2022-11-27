@@ -1,4 +1,5 @@
 //document.addEventListener('DOMContentLoaded', assignClickHandler)
+document.getElementById("loadData").addEventListener("click", loadData);
 
 function performPost(){
    
@@ -36,7 +37,7 @@ function performPost(){
   
 }
 
-document.getElementById("loadData").addEventListener("click", loadData);
+
 
 /*function assignClickHandler () {
   document.getElementById('addRec').addEventListener('click', function () {
