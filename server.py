@@ -57,9 +57,9 @@ def addUser():
         data["records"].append(newUser)
     with open(file_name, 'w') as f:
         json.dump(data, f)
+    return make_response('', 200)
     #write_to_file(data, file_name)
-        d = json.load(f)
-        return(d)
+     
      
 
 
