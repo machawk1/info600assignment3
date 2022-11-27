@@ -12,7 +12,7 @@ function performPost(){
     
    $.ajax({
        type:"POST",
-       url: "users/",
+       url: "user/",
        data:{fullName: fullName},
   })
 }
