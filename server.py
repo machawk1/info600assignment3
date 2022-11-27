@@ -51,10 +51,10 @@ def addUser():
     file_name = 'data/entries.json'
     with open(file_name, 'r') as f:
         # Read the JSON into a variable
-        data = json.load(f)
+        #data = json.load(f)
 
         # Add a new record to the JSON
-        data["records"].append(newUser)
+        #data["records"].append(newUser)
 
     write_to_file(data, file_name)
 
