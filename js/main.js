@@ -28,7 +28,7 @@ function performPost(){
    $.ajax({
        type:"POST",
        url: "user/",
-       data: {"fullName": "document.getElementById('fullName').value",
+       data: JSON.stringify{"fullName": "document.getElementById('fullName').value",
               "major": "document.getElementById('major').value",
               "startYear": "document.getElementById('startYear').value"}
        
