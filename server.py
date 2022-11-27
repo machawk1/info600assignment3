@@ -44,7 +44,7 @@ def addUser():
         "id": newId,
         "fullName": request.form.get("fullName"),
         "major": request.form.get("major"),
-        "startYear": (request.form.get("startYear"))
+        "startYear": int(request.form.get("startYear"))
     }
 
     data = ''
