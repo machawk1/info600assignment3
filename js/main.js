@@ -36,6 +36,8 @@ function performPost(){
   
 }
 
+document.getElementById("loadData").addEventListener("click", loadData);
+
 /*function assignClickHandler () {
   document.getElementById('addRec').addEventListener('click', function () {
     const startYear = document.getElementById('startYear').value
@@ -63,17 +65,20 @@ function performPost(){
   })
 }*/
 
-/*function loadData(){
+function loadData(){
 
-    document.getElementById('loadData').addEventListener('click', function(){
+    
         $.getJSON("entries_orig.json",function(obj){
 
             $.each(obj, function(key, value){
 
             $("ul").append("<li>"+value.name+"</li>");
+            newEntry = fullName
+            let newChild = document.createElement('li')
+            newChild.appendChild(document.createTextNode(newEntry))
             });
         });
 
 
     });
-}*/
+}
