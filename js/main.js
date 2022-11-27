@@ -1,5 +1,5 @@
 //document.addEventListener('DOMContentLoaded', assignClickHandler)
-document.getElementById("loadData").addEventListener("click", loadData);
+document.getElementById("loadData").addEventListener("click", loadData)
 
 function performPost(){
    
