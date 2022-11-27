@@ -25,8 +25,8 @@ function performPost(){
     
    $.ajax({
        type:"POST",
-       url: "user/",
-       data:{'fullName', 'major', 'startYear' },
+       url: "user/"
+       
   })
   
 }
