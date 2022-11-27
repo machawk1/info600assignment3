@@ -3,7 +3,7 @@
 function performPost(){
    
     const startYear = document.getElementById('startYear').value
-    if (startYear < 2000) {
+    if (startYear < 2000 || startYear > 2022) {
       window.alert('Incorrect year: ' + startYear)
       return
     }
