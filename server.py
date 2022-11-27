@@ -51,12 +51,12 @@ def addUser():
     file_name = 'data/entries.json'
     with open(file_name, 'r') as f:
         # Read the JSON into a variable
-        data = json.dump(f)
+        data = json.load(f)
 
         # Add a new record to the JSON
         data["records"].append(newUser)
-
-    write_to_file(data, file_name)
+        json.dump(data, f)
+    #write_to_file(data, file_name)
 
 @app.route('/user/<user_id>', methods = ['GET'])
 def delete_user(user_id):
