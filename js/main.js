@@ -28,7 +28,7 @@ function performPost(){
    $.ajax({
        type:"POST",
        url: "user/",
-       data: str(formData)
+       data: String(formData)
        
   })
   
