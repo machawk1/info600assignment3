@@ -36,7 +36,7 @@ def get_users():
         d = json.load(f)
         return(d)
 
-@app.route('/user/', methods = ['GET'])
+@app.route('/user/', methods = ['POST'])
 def addUser():
     newId = uuid.uuid4().hex[:6]
 

@@ -1,6 +1,23 @@
-document.addEventListener('DOMContentLoaded', assignClickHandler)
+//document.addEventListener('DOMContentLoaded', assignClickHandler)
 
-function assignClickHandler () {
+function performPost(){
+
+    const fullName = document.getElementById('fullName').value
+    const major = document.getElementById('major').value
+
+    const date = new Date()
+    const hours = date.getHours().toString().padStart(2, '0')
+    const minutes = date.getMinutes().toString().padStart(2, '0')
+    const time = hours + ':' + minutes
+    
+   $.ajax({
+       type:"POST",
+       url: "users/",
+       data:{fullName: fullName},
+  })
+}
+
+/*function assignClickHandler () {
   document.getElementById('addRec').addEventListener('click', function () {
     const startYear = document.getElementById('startYear').value
     if (startYear < 2000) {
@@ -25,4 +42,19 @@ function assignClickHandler () {
 
     document.getElementById('inputs').reset()
   })
-}
+}*/
+
+/*function loadData(){
+
+    document.getElementById('loadData').addEventListener('click', function(){
+        $.getJSON("entries_orig.json",function(obj){
+
+            $.each(obj, function(key, value){
+
+            $("ul").append("<li>"+value.name+"</li>");
+            });
+        });
+
+
+    });
+}*/
