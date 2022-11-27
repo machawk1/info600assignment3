@@ -1,6 +1,12 @@
 //document.addEventListener('DOMContentLoaded', assignClickHandler)
 
 function performPost(){
+   
+    const startYear = document.getElementById('startYear').value
+    if (startYear < 2000) {
+      window.alert('Incorrect year: ' + startYear)
+      return
+    }
 
     const fullName = document.getElementById('fullName').value
     const major = document.getElementById('major').value
