@@ -77,10 +77,11 @@ function loadData(){
         $.ajax({
             type: "GET",
             url: "users",
+            dataType: "json"
             success: function(data,status){
- 
-               var response = JSON.parse(data);
-               for(property in response)
+               console.log(data)
+               
+               for(property in data)
                {
                     const newEntry = time + ' - ' + fullName + ', ' + major + ', ' + startYear
                     const enteredRecords = document.getElementById('enteredRecords')
