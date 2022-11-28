@@ -77,7 +77,7 @@ function loadData(){
         $.ajax({
             type: "GET",
             url: "users",
-            dataType: "json"
+            dataType: "json",
             success: function(data,status){
                console.log(data)
                
