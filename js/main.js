@@ -1,9 +1,9 @@
 //document.addEventListener('DOMContentLoaded', assignClickHandler)
-var load = document.getElementById('loadData');
-if(load){
+//var load = document.getElementById('loadData');
+//if(load){
 
-    load.addEventListener('click', loadData);
-}
+   // load.addEventListener('click', loadData);
+//}
 
 
 
