@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', assignClickHandler)
 
-function assignClickHandler () {
+function assignClickHandler() {
   document.getElementById('addRec').addEventListener('click', function () {
     const startYear = document.getElementById('startYear').value
-    if (startYear < 2000) {
+    if (startYear < 2000 || startYear > 2022) {
       window.alert('Incorrect year: ' + startYear)
       return
     }
@@ -25,4 +25,12 @@ function assignClickHandler () {
 
     document.getElementById('inputs').reset()
   })
+  $.ajax
+    ({
+      type: "POST",
+      url: "http://127.0.0.1:8081/user/",
+      contentType: "application/json",
+      data: { fullName: fullName, major: major, startYear: startYear },
+    });
 }
+
