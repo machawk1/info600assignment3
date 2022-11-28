@@ -34,6 +34,7 @@ def get_data(path):
 def get_users():
     with open('data/entries.json', 'r') as f:
         d = json.load(f)
+        print(d)
         return(d)
 
 @app.route('/user/', methods = ['POST'])
