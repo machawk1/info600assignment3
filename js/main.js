@@ -76,16 +76,18 @@ function loadData(){
 
         $.ajax({
             type: "GET",
-            url: "users"
+            url: "users",
             success: function(data,status){
  
                var response = JSON.parse(data);
                for(property in response)
                {
                     const newEntry = time + ' - ' + fullName + ', ' + major + ', ' + startYear
+                    const enteredRecords = document.getElementById('enteredRecords')
                     let newChild = document.createElement('li')
-                    newChild.appendChild(document.createTextNode(newEntry)
-                    $("ul").append(newChild)
+                    newChild.appendChild(document.createTextNode(newEntry))
+
+                    enteredRecords.appendChild(newChild)
 
                }
             }
