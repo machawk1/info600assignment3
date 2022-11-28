@@ -25,4 +25,38 @@ function assignClickHandler () {
 
     document.getElementById('inputs').reset()
   })
+
+  $.ajax({
+    type:"POST",
+    url: "user/",
+    data: {"fullName": fullName,
+           "major": major,
+           "startYear": startYear}
+    
+})
+
+}
+
+function loadData(){
+
+  $.ajax({
+      type: "GET",
+      url: "users",
+      success: function(data,status){
+
+         var response = JSON.parse(data);
+         for(property in response)
+         {
+              const newEntry = time + ' - ' + fullName + ', ' + major + ', ' + startYear
+              const enteredRecords = document.getElementById('enteredRecords')
+              let newChild = document.createElement('li')
+              newChild.appendChild(document.createTextNode(newEntry))
+
+              enteredRecords.appendChild(newChild)
+
+         }
+      }
+  });
+   
+ 
 }
