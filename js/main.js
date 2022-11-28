@@ -22,12 +22,6 @@ function assignAddRecHandler () {
 
 function addRecord(time, fullName, major, startYear) {
   if (startYear >= 2000 && startYear < 2022) {
-    var record = {
-      "fullName": fullName,
-      "major": major,
-      "startYear": startYear
-    }
-
     var xhr = new XMLHttpRequest()
     xhr.open("POST", '/users/', true)
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
@@ -35,16 +29,14 @@ function addRecord(time, fullName, major, startYear) {
     xhr.onreadystatechange = function() {
       if (xhr.readyState == XMLHttpRequest.DONE) {
         if (xhr.status == 200) {
-          addRecordToTable(time, fullName, major, startYear)
+          loadData()
         } else {
           alert("Failed to add record")
         }
       }
     }
   
-    //xhr.send(JSON.stringify(record))
     xhr.send("fullName="+fullName+"&major="+major+"&startYear="+startYear)
-
   } else {
     alert("Start year must be between 2000 and 2022")
   }
@@ -58,6 +50,13 @@ function addRecordToTable(time, fullName, major, startYear) {
   newChild.appendChild(document.createTextNode(newEntry))
 
   enteredRecords.appendChild(newChild)
+  var button = document.createElement("button")
+  button.type = 'button'
+  button.innerHTML = "Delete"
+  button.addEventListener('click', function() {
+    deleteRecord(record.id) 
+  })
+  newChild.append(button)
   
   document.getElementById('inputs').reset()
 }
