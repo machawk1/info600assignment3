@@ -25,16 +25,16 @@ function assignClickHandler(){
   enteredRecords.appendChild(newChild)
 
   
- $.ajax({
-     type:"POST",
-     url: "user/",
-     data: {"fullName": fullName,
-            "major": major,
-            "startYear": startYear}
-     
-})
+  $.ajax({
+      type:"POST",
+      url: "user/",
+      data: {"fullName": fullName,
+              "major": major,
+              "startYear": startYear}
+      
+  })
 
-}
+  }
 
 
 function newData(){
