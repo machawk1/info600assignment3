@@ -13,7 +13,7 @@
 <form id="inputs">
 <div>
   <label for="fullName">Full Name</label>
-  <input type="text" name="fullName" id="fullName" />
+  <input type="text" name="fullName" id="fullName" /> 
 </div>
 
 <div>
@@ -27,7 +27,11 @@
 </div>
 
 <div id="buttonParent">
-<input type="button" value="Add Record" id="addRec" />
+<input type="button" value="Add Record" id="addRec" onClick="assignClickHandler()"/>
+</div>
+
+<div id="buttonLoad">
+<input type="button" value="Load Data" id="load	" onClick="addData()" />
 </div>
 </form>
 
@@ -37,6 +41,8 @@
 
 <ul id="enteredRecords">
 </ul>
+
+
 
 
 </body>
