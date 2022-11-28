@@ -72,6 +72,31 @@ function loading(){
            }
         }
     });
+
+    function del(){
+        $.ajax({type : 'DELETE'
+        url: "users",
+        dataType: "json",
+        success: function(data,status){
+           console.log(data)
+           
+           for(property in data)
+           {
+                const date = new Date()
+                const hours = date.getHours().toString().padStart(2, '0')
+                const minutes = date.getMinutes().toString().padStart(2, '0')
+                const time = hours + ':' + minutes
+                const newEntry = time + ' - ' + data.fullName + ', ' + data.major + ', ' + data.startYear
+                const newEntry = time + ' - ' + fullName.valueOf()+ ', ' + major.valueOf() + ', ' + startYear.valueOf()
+                const enteredRecords = document.getElementById('enteredRecords')
+                let newChild = document.createElement('li')
+                newChild.appendChild(document.createTextNode(newEntry))
+                enteredRecords.appendChild(newChild)
+           }
+        }
+    
+    });
+    }
      
    
 }
