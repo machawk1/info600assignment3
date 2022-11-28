@@ -85,6 +85,7 @@ function loadData(){
                
                for(property in data)
                {
+                    console.log(property)
                     const fullName = document.getElementById('fullName').value
                     const major = document.getElementById('major').value
                     const date = new Date()
