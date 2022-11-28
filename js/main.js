@@ -74,17 +74,21 @@ function performPost(){
 
 function loadData(){
 
-    
-        $.getJSON("entries_orig.json",function(obj){
+        $.ajax({
+            type: "GET",
+            url: "users",
+            $.getJSON("entries_orig.json",function(obj){
+                $.each(obj, function(key, value){
 
-            $.each(obj, function(key, value){
-
-            $("ul").append("<li>"+value.name+"</li>");
-            newEntry = fullName
-            let newChild = document.createElement('li')
-            newChild.appendChild(document.createTextNode(newEntry))
+                $("ul").append("<li>"+value.fullName+"</li>");
+                
             });
-        });
+                
+            });
 
 
+       });
 }
+
+    
+        
