@@ -30,33 +30,34 @@ def get_data(path):
 
 # HTTP actions for assignment 3
 
-@app.route('/users', methods = ['GET'])
+@app.route('/users/', methods = ['GET', 'POST'])
 def get_users():
     with open('data/entries.json', 'r') as f:
         d = json.load(f)
         return(d)
-
-@app.route('/user/', methods = ['GET'])
+       
+@app.route('/user/', methods = ['GET','POST'])
 def addUser():
     newId = uuid.uuid4().hex[:6]
-
-    newUser = {
-        "id": newId,
-        "fullName": request.form.get("fullName"),
-        "major": request.form.get("major"),
-        "startYear": int(request.form.get("startYear"))
-    }
-
+    if request.method == 'POST':
+        newUser = {
+            "id": newId,
+            "fullName": request.form.get("fullName"),
+            "major": request.form.get("major"),
+            #"startYear": int(request.form.get("startYear"))
+        }
+        print(request.data)
+    
     data = ''
     file_name = 'data/entries.json'
     with open(file_name, 'r') as f:
         # Read the JSON into a variable
         data = json.load(f)
-
+        print(data)
         # Add a new record to the JSON
         data["records"].append(newUser)
-
-    write_to_file(data, file_name)
+    write_to_file(file_name, str(data))
+    return make_response('', 200)
 
 @app.route('/user/<user_id>', methods = ['GET'])
 def delete_user(user_id):
@@ -78,6 +79,9 @@ def write_to_file(file_path, jsonString):
     with open(file_path, 'w') as f:
         # Write the modified list to file
         json.dump(jsonString, f, sort_keys=True, indent=4)
+        #f.write(jsonString)
+
+
 
 if __name__ == '__main__':
   # If you mess up your data, re-run the container and it will be restored
