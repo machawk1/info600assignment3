@@ -91,15 +91,8 @@ function loadData(){
 
                }
             }
-        })
-         /*$.getJSON("entries.json",function(obj){
-                $.each(obj, function(key, value){
-
-                $("ul").append("<li>"+value.fullName+"</li>");
-                
-            });
-                
-         });*/
+        });
+         
        
 }
 
