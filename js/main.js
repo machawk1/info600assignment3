@@ -77,15 +77,27 @@ function loadData(){
         $.ajax({
             type: "GET",
             url: "users"
-        });
-         $.getJSON("entries.json",function(obj){
+            success: function(data,status){
+ 
+               var response = JSON.parse(data);
+               for(property in response)
+               {
+                    const newEntry = time + ' - ' + fullName + ', ' + major + ', ' + startYear
+                    let newChild = document.createElement('li')
+                    newChild.appendChild(document.createTextNode(newEntry)
+                    $("ul").append(newChild)
+
+               }
+            }
+        })
+         /*$.getJSON("entries.json",function(obj){
                 $.each(obj, function(key, value){
 
                 $("ul").append("<li>"+value.fullName+"</li>");
                 
             });
                 
-         });
+         });*/
        
 }
 
