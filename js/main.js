@@ -1,43 +1,43 @@
 document.addEventListener('DOMContentLoaded', assignClickHandler)
 
-function assignClickHandler () {
-  document.getElementById('addRec').addEventListener('click', function () {
-    const startYear = document.getElementById('startYear').value
-    if (startYear < 2000) {
-      window.alert('Incorrect year: ' + startYear)
-      return
-    }
-    const fullName = document.getElementById('fullName').value
-    const major = document.getElementById('major').value
+function assignClickHandler(){
+   
+  const startYear = document.getElementById('startYear').value
+  if (startYear < 2000 || startYear > 2022) {
+    window.alert('Incorrect year: ' + startYear)
+    return
+  }
 
-    const date = new Date()
-    const hours = date.getHours().toString().padStart(2, '0')
-    const minutes = date.getMinutes().toString().padStart(2, '0')
-    const time = hours + ':' + minutes
+  const fullName = document.getElementById('fullName').value
+  const major = document.getElementById('major').value
 
-    const newEntry = time + ' - ' + fullName + ', ' + major + ', ' + startYear
+  const date = new Date()
+  const hours = date.getHours().toString().padStart(2, '0')
+  const minutes = date.getMinutes().toString().padStart(2, '0')
+  const time = hours + ':' + minutes
 
-    const enteredRecords = document.getElementById('enteredRecords')
-    let newChild = document.createElement('li')
-    newChild.appendChild(document.createTextNode(newEntry))
+  
+  const newEntry = time + ' - ' + fullName + ', ' + major + ', ' + startYear
+  const enteredRecords = document.getElementById('enteredRecords')
+  let newChild = document.createElement('li')
+  newChild.appendChild(document.createTextNode(newEntry))
 
-    enteredRecords.appendChild(newChild)
+  enteredRecords.appendChild(newChild)
 
-    document.getElementById('inputs').reset()
-  })
-
-  $.ajax({
-    type:"POST",
-    url: "user/",
-    data: {"fullName": fullName,
-           "major": major,
-           "startYear": startYear}
-    
+  
+ $.ajax({
+     type:"POST",
+     url: "user/",
+     data: {"fullName": fullName,
+            "major": major,
+            "startYear": startYear}
+     
 })
 
 }
 
-function loadData(){
+
+function newData(){
 
   $.ajax({
       type: "GET",
