@@ -58,8 +58,9 @@ def addUser():
 
     with open(file_name, 'w') as f:
         json.dump(data, f)
-        
-    write_to_file(data, file_name)
+    return make_response('', 200)
+    
+    # write_to_file(data, file_name)
 
 @app.route('/user/<user_id>', methods = ['GET'])
 def delete_user(user_id):
