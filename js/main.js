@@ -89,7 +89,7 @@ function loadData(){
                     const hours = date.getHours().toString().padStart(2, '0')
                     const minutes = date.getMinutes().toString().padStart(2, '0')
                     const time = hours + ':' + minutes
-                    const newEntry = time + ' - ' + fullName + ', ' + major + ', ' + startYear
+                    const newEntry = time + ' - ' + data.fullName + ', ' + data.major + ', ' + data.startYear
                     const enteredRecords = document.getElementById('enteredRecords')
                     let newChild = document.createElement('li')
                     newChild.appendChild(document.createTextNode(newEntry))
