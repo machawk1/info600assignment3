@@ -10,7 +10,9 @@ input, label {
 }
 
 br {clear: both;}
-h1 {font-size: 18px;}
+h1 {
+  font-size: 20px;
+}
 ul {
   list-style-type: none;
   margin: 0;
@@ -20,3 +22,16 @@ ul {
 #buttonParent {
   margin-top: 1.1em;
 }
+
+#loadData {
+  margin-top: 1.1em;
+}
+
+#main {
+  color: MediumVioletRed;
+}
+
+#records {
+  color: crimson;
+}
+
