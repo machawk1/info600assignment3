@@ -1,42 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Student Record Management</title>
-    <link rel="stylesheet" href="css/main.css" />
-    <script src="js/main.js"></script>
+  <meta charset="UTF-8">
+  <title>Student Record Management</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <script src="js/main.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+     // Bind submit button onclick handler to send an Ajax request and
+     //  process Ajax response.
+     $(':submit').click(function (event) {
+        event.preventDefault();  // Do not run the default action
+        var fullnameVar = $(':text[name="fullName"]').val();
+        var majorVar = $(':text[name="major"]').val();
+        var startYearVar = $(':text[name="startYear"]').val();
+
+        if (startYearVar < 2000 || startYearVar > 2022) {
+          window.alert('Incorrect year: ' + startYearVar)
+          return
+        }
+
+
+        $.post('http://localhost:8081/user',
+           { fullName: fullnameVar, major:majorVar, startYear: startYearVar }
+          );
+       });
+
+
+     $('#Loaddata').click(function (event) {
+        event.preventDefault();  // Do not run the default action
+        $.ajax({ 
+            type: 'GET', 
+            url: 'http://localhost:8081/users', 
+            data: { get_param: 'value' }, 
+            dataType: 'json',
+            success: function (data) {               
+              var today = new Date();
+              var time = today.getHours() + ":" + today.getMinutes(); 
+              for (var i=0;i<data.records.length;++i){
+                // console.log(data[i]);
+                $('#cand').append('<ul>' + time + ' - '+ data.records[i].fullName + ', ' + data.records[i].major + ', ' + data.records[i].startYear + '</ul>');
+              }
+            }
+        });
+       });
+
+
+     $('#delete').click(function (event) {
+        event.preventDefault();  // Do not run the default action
+
+        $.get('http://localhost:8081/user/42',
+           {}
+          );
+       });
+
+
+
+
+
+    });
+  </script>
 </head>
+
+
 <body>
 
-<h1>Student Record Management</h1>
+  <h1>Student Record Management</h1>
 
-<form id="inputs">
-<div>
-  <label for="fullName">Full Name</label>
-  <input type="text" name="fullName" id="fullName" />
-</div>
+  <form id="inputs">
+  <div>
+    <label for="fullName">Full Name</label>
+    <input type="text" name="fullName" id="fullName" />
+  </div>
 
-<div>
-  <label for="major">Major</label>
-  <input type="text" name="major" id="major" />
-</div>
+  <div>
+    <label for="major">Major</label>
+    <input type="text" name="major" id="major" />
+  </div>
 
-<div>
-  <label for="startYear">Start Year</label>
-  <input type="text" name="startYear" id="startYear" />
-</div>
+  <div>
+    <label for="startYear">Start Year</label>
+    <input type="text" name="startYear" id="startYear" />
+  </div>
 
-<div id="buttonParent">
-<input type="button" value="Add Record" id="addRec" />
-</div>
-</form>
+  <div class="buttonParent">
 
-<br />
+  <input class="buttonParent" type="button" value="Load data" id="Loaddata" />
 
-<h1>Entered Records:</h1>
+  </div>
 
-<ul id="enteredRecords">
-</ul>
+
+  <div class="buttonParent">
+
+  <input class="buttonParent" type="submit" value="Add Record" id="submit" /> 
+
+  </div>
+
+
+
+  <div class="buttonParent">
+
+  <input class="buttonParent" type="button" value="Delete" id="delete" /> 
+
+  </div> 
+
+
+
+  </form>
+
+  <br />
+
+  <h1>Entered Records:</h1>
+
+  <ul id="enteredRecords">
+  </ul>
+
+  <div id="cand">
+    
+
+  </div>
 
 
 </body>
