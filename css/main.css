@@ -6,7 +6,6 @@ div {
 
 input, label {
   display: block;
-  height: 1.1em;
 }
 
 br {clear: both;}
@@ -18,5 +17,9 @@ ul {
 }
 
 #buttonParent {
+  margin-top: 1.1em;
+}
+
+#loading {
   margin-top: 1.1em;
 }
