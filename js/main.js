@@ -26,3 +26,28 @@ function assignClickHandler () {
     document.getElementById('inputs').reset()
   })
 }
+
+document.addEventListener('DOMContentLoaded', assignClickLoad)
+
+function assignClickLoad () {
+  document.getElementById('Load').addEventListener('click', function () {
+    
+	var XR = new XMLHttpRequest();
+	XR.onreadystatechange = function(){
+		if (XR.readyState == XMLHttpRequest.DONE ) {
+			if(XR.status == 200) {
+				document.getElementById("inputs").innerHTML = XR.responseText;
+			}
+			else if(XR.status == 400) {
+				alert('Error 400')
+			}
+			else {
+				alert('what')
+			}
+		}
+        }
+	XR.open("GET","http://localhost:8081/users", true);
+	XR.send();
+  })
+
+}
