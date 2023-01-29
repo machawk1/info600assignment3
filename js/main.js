@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', assignClickHandler)
 
 function assignClickHandler () {
@@ -37,6 +38,13 @@ function assignClickLoad () {
 		if (XR.readyState == XMLHttpRequest.DONE ) {
 			if(XR.status == 200) {
 				document.getElementById("inputs").innerHTML = XR.responseText;
+				peopleData = JSON.parse(XR.responseText);
+				for(var key in peopleData['records']){
+					document.write(peopleData['records'][key]['id'] + " - ");
+					document.write(peopleData['records'][key]['fullName'] + ", ");
+					document.write(peopleData['records'][key]['major'] + ", ");
+					document.write(peopleData['records'][key]['startYear'] + "<br/>");
+				}
 			}
 			else if(XR.status == 400) {
 				alert('Error 400')
