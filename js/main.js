@@ -25,6 +25,14 @@ function assignClickHandler () {
     enteredRecords.appendChild(newChild)
 
     document.getElementById('inputs').reset()
+	
+	var XR = new XMLHttpRequest();
+
+	let addedData = "fullName=" + fullName + "&major=" + major + "&startYear=" + startYear
+	XR.open("POST","http://localhost:8081/user", true);
+	XR.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8')
+	XR.send(addedData);
+
   })
 }
 
