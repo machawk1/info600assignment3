@@ -48,21 +48,28 @@ function assignClickLoad () {
 	XR.onreadystatechange = function(){
 		if (XR.readyState == XMLHttpRequest.DONE ) {
 			if(XR.status == 200) {
-				document.getElementById("inputs").innerHTML = XR.responseText;
+				var CR = document.getElementById("CurrentRecords")
+				CR.innerHTML = ""
 				peopleData = JSON.parse(XR.responseText);
 				for(var key in peopleData['records']){
-					document.write(peopleData['records'][key]['id'] + " - ");
-					document.write(peopleData['records'][key]['fullName'] + ", ");
-					document.write(peopleData['records'][key]['major'] + ", ");
-					document.write(peopleData['records'][key]['startYear'] + "<br/>");
+					CR.innerHTML += (peopleData['records'][key]['id'] + " - ");
+					CR.innerHTML += (peopleData['records'][key]['fullName'] + ", ");
+					CR.innerHTML += (peopleData['records'][key]['major'] + ", ");
+					CR.innerHTML += (peopleData['records'][key]['startYear']);
 					var delButton = document.createElement('button')
-					delButton.innerText = 'Delete'
+					delButton.innerText = 'Delete' + " - " + peopleData['records'][key]['fullName']
+					delButton.setAttribute ("id", "delete" + peopleData['records'][key]['id'])
 					delButton.addEventListener('click', () => {
 					    var XR = new XMLHttpRequest();
     					    XR.open("DELETE", "http://localhost:8081/user/" + peopleData['records'][key]['id']);
    					    XR.send();
+					  var delButton = document.getElementById("delete" + peopleData['records'][key]['id']);
+  					  var parentOfdelButton = delButton.parentElement;
+  					  parentOfdelButton.removeChild(delButton);
+					document.getElementById('Load').click()
 					})
 					document.body.appendChild(delButton)
+					CR.innerHTML += "</br>"
 				}
 			}
 			else if(XR.status == 400) {
