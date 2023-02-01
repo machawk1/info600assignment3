@@ -59,7 +59,7 @@ def addUser():
     write_to_file(file_name, data)
     return make_response('', 200)
 
-@app.route('/user/<user_id>', methods = ['GET'])
+@app.route('/user/<user_id>', methods = ['DELETE'])
 def delete_user(user_id):
     data = ''
     file_name = 'data/entries.json'
