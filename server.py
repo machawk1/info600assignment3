@@ -31,12 +31,12 @@ def get_data(path):
 # HTTP actions for assignment 3
 
 @app.route('/users', methods = ['GET'])
-def get_users():
+def getUsers():
     with open('data/entries.json', 'r') as f:
         d = json.load(f)
         return(d)
 
-@app.route('/user/', methods = ['GET'])
+@app.route('/user/', methods = ['POST'])
 def addUser():
     newId = uuid.uuid4().hex[:6]
 
@@ -44,25 +44,25 @@ def addUser():
         "id": newId,
         "fullName": request.form.get("fullName"),
         "major": request.form.get("major"),
-        "startYear": int(request.form.get("startYear"))
+        "startYear": request.form.get("startYear")
     }
 
     data = ''
-    file_name = 'data/entries.json'
-    with open(file_name, 'r') as f:
+    fileName = 'data/entries.json'
+    with open(fileName, 'r') as f:
         # Read the JSON into a variable
         data = json.load(f)
-
         # Add a new record to the JSON
         data["records"].append(newUser)
 
-    write_to_file(data, file_name)
+    writeToFile(fileName, data)
+    return make_response('', 200)
 
-@app.route('/user/<user_id>', methods = ['GET'])
-def delete_user(user_id):
+@app.route('/user/<user_id>', methods = ['DELETE'])
+def deleteUser(user_id):
     data = ''
-    file_name = 'data/entries.json'
-    with open(file_name, 'r') as f:
+    fileName = 'data/entries.json'
+    with open(fileName, 'r') as f:
         data = json.load(f)
 
     # Iterate through records, delete one that matches user id
@@ -70,12 +70,12 @@ def delete_user(user_id):
         if record["id"] == user_id:
             del data["records"][i]
 
-    write_to_file(file_name, data)
+    writeToFile(fileName, data)
     return make_response('', 200)
 
 
-def write_to_file(file_path, jsonString):
-    with open(file_path, 'w') as f:
+def writeToFile(filePath, jsonString):
+    with open(filePath, 'w') as f:
         # Write the modified list to file
         json.dump(jsonString, f, sort_keys=True, indent=4)
 
