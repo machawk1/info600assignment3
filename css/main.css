@@ -20,3 +20,14 @@ ul {
 #buttonParent {
   margin-top: 1.1em;
 }
+
+.entryContainer {
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 10px; 
+}
+
+.deleteButton {
+  margin-left: 10px;
+  vertical-align: middle;
+}
