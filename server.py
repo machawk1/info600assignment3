@@ -34,9 +34,9 @@ def get_data(path):
 def get_users():
     with open('data/entries.json', 'r') as f:
         d = json.load(f)
-        return(d)
+        return (d)
 
-@app.route('/user/', methods = ['GET'])
+@app.route('/user/', methods = ['POST'])
 def addUser():
     newId = uuid.uuid4().hex[:6]
 
@@ -47,7 +47,7 @@ def addUser():
         "startYear": int(request.form.get("startYear"))
     }
 
-    data = ''
+    data = {}
     file_name = 'data/entries.json'
     with open(file_name, 'r') as f:
         # Read the JSON into a variable
@@ -56,28 +56,33 @@ def addUser():
         # Add a new record to the JSON
         data["records"].append(newUser)
 
-    write_to_file(data, file_name)
+    write_to_file(file_name, data)
+    return make_response('', 201) #Created status code
 
-@app.route('/user/<user_id>', methods = ['GET'])
+@app.route('/user/<user_id>', methods=['DELETE'])
 def delete_user(user_id):
-    data = ''
+    data = {}
     file_name = 'data/entries.json'
     with open(file_name, 'r') as f:
         data = json.load(f)
 
-    # Iterate through records, delete one that matches user id
+    records_to_delete = []
+
     for i, record in enumerate(data["records"]):
         if record["id"] == user_id:
-            del data["records"][i]
+            records_to_delete.append(i)
+
+    for i in reversed(records_to_delete):
+        del data["records"][i]
 
     write_to_file(file_name, data)
     return make_response('', 200)
 
 
-def write_to_file(file_path, jsonString):
+def write_to_file(file_path, json_data):
     with open(file_path, 'w') as f:
         # Write the modified list to file
-        json.dump(jsonString, f, sort_keys=True, indent=4)
+        json.dump(json_data, f, sort_keys=True, indent=4)
 
 if __name__ == '__main__':
   # If you mess up your data, re-run the container and it will be restored
