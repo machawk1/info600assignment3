@@ -11,6 +11,12 @@
             "id": "42",
             "major": "Computer Science",
             "startYear": 2012
+        },
+        {
+            "fullName": "Zoe Weiner",
+            "id": "958f2d",
+            "major": "Cybersecurity",
+            "startYear": "2023"
         }
     ]
 }
